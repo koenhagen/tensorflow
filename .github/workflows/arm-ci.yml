@@ -17,16 +17,11 @@ name: ARM CI
 
 on:
   push:
-    branches:
-      - master
-      - r2.**
 permissions:
   contents: read
 
 jobs:
   build:
-    # Don't do this in forks, and if labeled, only for 'kokoro:force-run'
-    if: github.repository == 'tensorflow/tensorflow' && (github.event.action != 'labeled' || (github.event.action == 'labeled' && github.event.label.name == 'kokoro:force-run'))
     runs-on: [self-hosted, linux, ARM64]
     strategy:
       matrix:
